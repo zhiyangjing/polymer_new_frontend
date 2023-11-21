@@ -4,7 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import { viteBuildInfo } from "./info";
 import svgLoader from "vite-svg-loader";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import { viteMockServe } from "vite-plugin-mock";
+// import { viteMockServe } from "vite-plugin-mock";
 import { configCompressPlugin } from "./compress";
 import { visualizer } from "rollup-plugin-visualizer";
 import removeConsole from "vite-plugin-remove-console";
@@ -43,16 +43,16 @@ export function getPluginsList(
     // svg组件化支持
     svgLoader(),
     // mock支持
-    viteMockServe({
-      mockPath: "mock",
-      localEnabled: command === "serve",
-      prodEnabled: command !== "serve" && prodMock,
-      injectCode: `
-          import { setupProdMockServer } from './mockProdServer';
-          setupProdMockServer();
-        `,
-      logger: false
-    }),
+    // viteMockServe({
+    //   mockPath: "mock",
+    //   localEnabled: command === "serve",
+    //   prodEnabled: command !== "serve" && prodMock,
+    //   injectCode: `
+    //       import { setupProdMockServer } from './mockProdServer';
+    //       setupProdMockServer();
+    //     `,
+    //   logger: false
+    // }),
     // 打包分析
     lifecycle === "report"
       ? visualizer({ open: true, brotliSize: true, filename: "report.html" })

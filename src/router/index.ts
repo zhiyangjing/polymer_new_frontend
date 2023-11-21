@@ -37,7 +37,26 @@ import {
  * 如何排除文件请看：https://cn.vitejs.dev/guide/features.html#negative-patterns
  */
 const modules: Record<string, any> = import.meta.glob(
-  ["./modules/**/*.ts", "!./modules/**/remaining.ts"],
+  ["./modules/**/*.ts",
+    "!./modules/**/able.ts",
+    "!./modules/**/about.ts",
+    "!./modules/**/components.ts",
+    "!./modules/**/editor.ts",
+    "!./modules/**/error.ts",
+    "!./modules/**/flowchart.ts",
+    "!./modules/**/formdesign.ts",
+    "!./modules/**/guide.ts",
+
+    "!./modules/**/list.ts",
+    "!./modules/**/menuoverflow.ts",
+    "!./modules/**/nested.ts",
+    "!./modules/**/ppt.ts",
+    "!./modules/**/puredoc.ts",
+    "!./modules/**/pureutils.ts",
+    "!./modules/**/remaining.ts",
+    "!./modules/**/result.ts",
+    "!./modules/**/table.ts",
+  ],
   {
     eager: true
   }

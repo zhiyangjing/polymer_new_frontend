@@ -1,4 +1,5 @@
 import { http } from "@/utils/http";
+import { baseUrlApi } from "./utils";
 
 export type UserResult = {
   success: boolean;
@@ -28,12 +29,38 @@ export type RefreshTokenResult = {
   };
 };
 
+export type RouteResult = {
+  success: boolean;
+  data: {
+    path: string;
+    meta: {
+      tite: string;
+      icon?: string;
+      rank: number;
+    };
+    children?: {
+      path: string;
+      name: string;
+      meta: {
+        title: string;
+        roles: Array<string>;
+      };
+    };
+  };
+};
+
 /** 登录 */
 export const getLogin = (data?: object) => {
-  return http.request<UserResult>("post", "/login", { data });
+  return http.request<UserResult>("post", baseUrlApi("login"), { data });
 };
+
+export const getRegister = (data?: object) => {
+  return http.request<UserResult>("post", baseUrlApi("user/add"), { data });
+}
 
 /** 刷新token */
 export const refreshTokenApi = (data?: object) => {
-  return http.request<RefreshTokenResult>("post", "/refresh-token", { data });
+  return http.request<RefreshTokenResult>("post", baseUrlApi("refreshToken"), {
+    data
+  });
 };

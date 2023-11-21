@@ -1,4 +1,5 @@
 import { http } from "@/utils/http";
+import { baseUrlApi } from "./utils";
 
 type Result = {
   success: boolean;
@@ -10,10 +11,10 @@ type Result = {
 
 /** 卡片列表 */
 export const getCardList = (data?: object) => {
-  return http.request<Result>("post", "/get-card-list", { data });
+  return http.request<Result>("post", baseUrlApi("/get-card-list"), { data });
 };
 
 /** 版本日志 */
 export const getReleases = () => {
-  return http.request<Result>("get", "/releases");
+  return http.request<Result>("get", baseUrlApi("/releases"));
 };

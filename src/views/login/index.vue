@@ -73,14 +73,18 @@ const onLogin = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       useUserStoreHook()
-        .loginByUsername({ username: ruleForm.username, password: "admin123" })
+        .loginByUsername({ username: ruleForm.username, password: ruleForm.password })
         .then(res => {
+          console.log("getbac")
+          console.log(res.success)
           if (res.success) {
             // 获取后端路由
             initRouter().then(() => {
               router.push(getTopMenu(true).path);
               message("登录成功", { type: "success" });
             });
+          } else {
+            message("登录失败："+res.data["message"], { type: "error" });
           }
         })
         .finally(() => (loading.value = false));
@@ -257,13 +261,13 @@ watch(loginDay, value => {
                       </el-tooltip>
                     </span>
                   </el-checkbox>
-                  <el-button
+                  <!-- <el-button
                     link
                     type="primary"
                     @click="useUserStoreHook().SET_CURRENTPAGE(4)"
                   >
                     {{ t("login.forget") }}
-                  </el-button>
+                  </el-button> -->
                 </div>
                 <el-button
                   class="w-full mt-4"
@@ -294,7 +298,7 @@ watch(loginDay, value => {
             </Motion>
           </el-form>
 
-          <Motion v-if="currentPage === 0" :delay="350">
+          <!-- <Motion v-if="currentPage === 0" :delay="350">
             <el-form-item>
               <el-divider>
                 <p class="text-gray-500 text-xs">{{ t("login.thirdLogin") }}</p>
@@ -313,15 +317,15 @@ watch(loginDay, value => {
                 </span>
               </div>
             </el-form-item>
-          </Motion>
+          </Motion> -->
           <!-- 手机号登录 -->
-          <phone v-if="currentPage === 1" />
+          <!-- <phone v-if="currentPage === 1" /> -->
           <!-- 二维码登录 -->
-          <qrCode v-if="currentPage === 2" />
+          <!-- <qrCode v-if="currentPage === 2" /> -->
           <!-- 注册 -->
-          <regist v-if="currentPage === 3" />
+          <regist v-if="currentPage === 1" />
           <!-- 忘记密码 -->
-          <update v-if="currentPage === 4" />
+          <!-- <update v-if="currentPage === 4" /> -->
         </div>
       </div>
     </div>

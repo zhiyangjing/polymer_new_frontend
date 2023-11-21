@@ -4,10 +4,12 @@ import { userType } from "./types";
 import { routerArrays } from "@/layout/types";
 import { router, resetRouter } from "@/router";
 import { storageLocal } from "@pureadmin/utils";
-import { getLogin, refreshTokenApi } from "@/api/user";
+import { getLogin,getRegister , refreshTokenApi } from "@/api/user";
 import { UserResult, RefreshTokenResult } from "@/api/user";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { type DataInfo, setToken, removeToken, userKey } from "@/utils/auth";
+import { resolve } from "node:path";
+import { rejects } from "node:assert";
 
 export const useUserStore = defineStore({
   id: "pure-user",
@@ -64,6 +66,21 @@ export const useUserStore = defineStore({
             reject(error);
           });
       });
+    },
+    /** 前端注册接口 */
+    async getRegister(data){
+      return new Promise<UserResult>((resolve,reject)=>{
+        getRegister(data)
+        .then(data=>{
+          if (data) {
+            setToken(data.data);
+            resolve(data);
+          }
+        })
+        .catch(error => {
+          reject(error);
+        });
+      })
     },
     /** 前端登出（不调用接口） */
     logOut() {

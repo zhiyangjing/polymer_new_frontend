@@ -1,7 +1,7 @@
 import type { App } from "vue";
 import * as echarts from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
-import { PieChart, BarChart, LineChart } from "echarts/charts";
+import { PieChart, BarChart, LineChart, CandlestickChart } from "echarts/charts";
 import {
   GridComponent,
   TitleComponent,
@@ -12,6 +12,7 @@ import {
   DataZoomComponent,
   VisualMapComponent
 } from "echarts/components";
+import CandleStickVue from "@/views/welcome/components/CandleStick.vue";
 
 const { use } = echarts;
 // const { use, registerTheme } = echarts;
@@ -28,7 +29,8 @@ use([
   ToolboxComponent,
   TooltipComponent,
   DataZoomComponent,
-  VisualMapComponent
+  VisualMapComponent,
+  CandlestickChart
 ]);
 
 /**
