@@ -35,6 +35,18 @@ onMounted(() => {
 })
 
 setOptions({
+  toolbox: {
+    feature: {
+      saveAsImage: {},
+      restore: {},
+      dataView: {
+      },
+      magicType: {
+        type: ['line', 'bar']
+      },
+      dataZoom: {}
+    }
+  },
   xAxis: {
     data: ["起始裂解温度(℃)", "最终裂解温度(℃)"]
   },
