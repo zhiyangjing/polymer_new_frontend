@@ -28,7 +28,7 @@ import ActionDialog from "./actionDialog.vue";
 const zIndex = ref(1000);
 const dialogVisible = ref(false);
 const searchPerformance = ref({
-  name: '',
+  name: ""
 });
 
 const showModal = () => {
@@ -39,21 +39,19 @@ const showModal = () => {
 
 const confirmSelection = async () => {
   try {
+let response = await addSearchPerformance({
+      data: searchPerformance.value.name
+    });
 
-    let response = await addSearchPerformance({ data: searchPerformance.value.name });
-
-
-    searchPerformance.value.name = '';
+    searchPerformance.value.name = "";
     dialogVisible.value = false;
-    console.log(response)
-    console.log(response.data)
+    console.log(response);
+    console.log(response.data);
     if (response.data) {
-      console.error('添加性能成功');
-
+      console.error("添加性能成功");
     }
   } catch (error) {
-    console.error('添加性能失败', error);
-
+    console.error("添加性能失败", error);
   }
 };
 /*
@@ -120,14 +118,23 @@ onMounted(() => {
         <el-card shadow="never" class="el-card">
           <template #header>
             <a :class="titleClass" target="_black">
-              <TypeIt :className="'type-it1'" :values="['耐烧蚀高分子温度性能统计']" :cursor="false" :speed="120" />
+              <TypeIt
+                :className="'type-it1'"
+                :values="['耐烧蚀高分子温度性能统计']"
+                :cursor="false"
+                :speed="120"
+              />
             </a>
           </template>
           <el-skeleton animated :rows="7" :loading="loading">
             <template #default>
-              <Bar :materialNameArray="barData.materialNameArray" :tempInitialArray="barData.tempInitialArray"
-                :tempEndArray="barData.tempEndArray" :max_tempArray="barData.max_tempArray"
-                :residual_massArray="barData.residual_massArray" />
+              <Bar
+                :materialNameArray="barData.materialNameArray"
+                :tempInitialArray="barData.tempInitialArray"
+                :tempEndArray="barData.tempEndArray"
+                :max_tempArray="barData.max_tempArray"
+                :residual_massArray="barData.residual_massArray"
+              />
             </template>
           </el-skeleton>
         </el-card>
@@ -135,7 +142,6 @@ onMounted(() => {
     </el-row>
     <el-row :span="12">
       <el-button @click="showModal" type="primary">材料性能选择</el-button>
-
     </el-row>
   </div>
   <div class="bottom-box">
@@ -144,22 +150,36 @@ onMounted(() => {
         <el-card shadow="never" class="el-bottom-card">
           <template #header>
             <a :class="titleClass" target="_black">
-              <TypeIt :className="'type-it2'" :values="['耐烧蚀高分子K线图统计']" :cursor="false" :speed="120" />
+              <TypeIt
+                :className="'type-it2'"
+                :values="['耐烧蚀高分子K线图统计']"
+                :cursor="false"
+                :speed="120"
+              />
             </a>
           </template>
           <el-skeleton animated :rows="7" :loading="loading">
             <template #default>
-              <CandleStick :tempInitialArray="candleStickData.tempInitialArray"
-                :tempEndArray="candleStickData.tempEndArray" />
+              <CandleStick
+                :tempInitialArray="candleStickData.tempInitialArray"
+                :tempEndArray="candleStickData.tempEndArray"
+              />
             </template>
           </el-skeleton>
         </el-card>
       </el-col>
     </el-row>
-    <el-dialog v-model="dialogVisible" title="选择材料性能" :style="{ 'z-index': zIndex }">
+    <el-dialog
+      v-model="dialogVisible"
+      title="选择材料性能"
+      :style="{ 'z-index': zIndex }"
+    >
       <el-form :model="searchPerformance" label-width="80px">
         <el-form-item label="列名">
-          <el-input v-model="searchPerformance.name" placeholder="请输入搜索内容"></el-input>
+          <el-input
+            v-model="searchPerformance.name"
+            placeholder="请输入搜索内容"
+          ></el-input>
         </el-form-item>
       </el-form>
       <!-- 其他模态框内容 -->
@@ -176,12 +196,10 @@ onMounted(() => {
 .el-col {
   margin-bottom: 18px;
 }
-
 .root {
   width: 200%;
   text-align: center;
 }
-
 .bottom-box {
   text-align: center;
   align-content: center;
