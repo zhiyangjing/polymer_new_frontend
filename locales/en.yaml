@@ -111,6 +111,7 @@ menus:
   hsTree: Big Data Tree
   hsMenuoverflow: Menu Overflow Show Tooltip Text
   hsChildMenuoverflow: Child Menu Overflow Show Tooltip Text
+  hsSheets: Sheets
 status:
   hsLoad: Loading...
 login:

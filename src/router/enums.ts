@@ -20,7 +20,9 @@ const home = 0, // 平台规定只有 home 路由的 rank 才能为 0 ，所以�
   editor = 17,
   guide = 18,
   menuoverflow = 19,
-  about = 20;
+  sheets = 20,
+  about = 21;
+
 
 export {
   home,
@@ -43,5 +45,6 @@ export {
   editor,
   guide,
   menuoverflow,
-  about
+  sheets,
+  about,
 };
